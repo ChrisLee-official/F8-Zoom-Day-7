@@ -1,0 +1,31 @@
+html {
+  font-size: 62.5%;
+}
+body {
+  font-size: 1.6rem;
+  font-family: "Source Code Pro", monospace;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "PT Sans", sans-serif;
+}
+.wrapper {
+  width: 100%;
+}
+.header {
+  display: flex;
+  width: 100%;
+  min-height: 496px;
+  background: url(../asset/banner-header.jpg) no-repeat center / cover;
+}
+.header__opacity {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+.header__container {
+  text-align: center;
+}
