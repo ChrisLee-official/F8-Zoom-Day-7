@@ -45,15 +45,6 @@ button {
   cursor: pointer;
 }
 
-input,
-button,
-textarea,
-select {
-  font-size: inherit;
-  font-family: inherit;
-  color: inherit;
-}
-
 .container {
   width: 1170px;
   max-width: 100%;
@@ -247,6 +238,22 @@ h1.heading {
   border: 1px solid #0000000d;
 }
 
+.menu a {
+  position: relative;
+  left: 0;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding-inline: 25px;
+  text-decoration: none;
+  color: #000000b3;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu li a:hover {
+  padding-left: 30px;
+}
+
 .menu li + li {
   border-top: 1px solid #0000000d;
 }
@@ -411,6 +418,33 @@ h1.heading {
   font-weight: 500;
   font-size: 1.2rem;
 }
+.float-shadow {
+  position: relative;
+  transform: translateZ(0px);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+.float-shadow:hover {
+  translate: 0 -6px;
+  transition: all ease-in-out 0.3s;
+}
+.float-shadow::before {
+  position: absolute;
+  content: "";
+  pointer-events: none;
+  z-index: -1;
+  top: 100%;
+  left: 5%;
+  height: 10px;
+  width: 90%;
+  opacity: 0;
+  transition: all ease-in-out 0.3s;
+  background: radial-gradient(ellipse at center, #00000059 0%, #00000000 80%);
+}
+
+.float-shadow:hover::before {
+  opacity: 1;
+  translate: 0 3px;
+}
 
 /* Pagination */
 .pagination {
@@ -538,14 +572,39 @@ h1.heading {
   padding-inline: 20px;
 }
 
-.footer .box form button {
+.btn-send {
   width: 95px;
   line-height: 40px;
   color: var(--white);
   text-transform: uppercase;
-  letter-spacing: 1.5;
+  letter-spacing: 1.5px;
   background: var(--primary);
-  border-radius: 20px;
+  border-radius: 30px;
+  position: relative;
+  overflow: hidden;
+  transition: color ease-out 0.3s;
+  z-index: 1;
+}
+.btn-send:hover {
+  color: var(--primary);
+}
+
+.btn-send::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  border-radius: 30px;
+  background: var(--white);
+  transform: scale(0);
+  transition: all ease-out 0.3s;
+}
+
+.btn-send:hover::before {
+  transform: scale(1);
 }
 /* End footer */
 
@@ -739,3 +798,120 @@ h1.heading {
   background: var(--secondary);
 }
 /* End Blog */
+
+/* Start Outline courses */
+
+.container-outline {
+  max-width: 500px;
+  height: 100vh;
+  margin: 0px auto;
+  background-color: #272a31;
+  color: #fff;
+}
+.heading {
+  font-size: 2.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 20px 0;
+}
+.search-group {
+  display: flex;
+  align-items: center;
+  padding: 20px 20px;
+  gap: 20px;
+}
+.search-form {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  background-color: #323c4a;
+  border-radius: 10px;
+}
+.search-form input {
+  border: none;
+  outline: none;
+  padding-left: 15px;
+  min-width: 300px;
+  height: 40px;
+  background-color: transparent;
+}
+.search-form input::placeholder {
+  font-size: 1.6rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.search-form input:not(:placeholder-shown) {
+  color: #fff;
+  font-size: 1.6rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.save-lesson {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  color: #0093fc;
+}
+.save-lesson i {
+  font-size: 2rem;
+}
+.save-lesson span {
+  font-size: 1.2rem;
+}
+.lesson-group {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.lesson-list {
+  counter-reset: section-counter; /* Gốc */
+  list-style: none;
+  padding-left: 0;
+}
+.section {
+  position: relative;
+  counter-increment: section-counter; /* Tăng section */
+  counter-reset: lesson-counter; /* Reset bài học cho từng section */
+}
+.section-header {
+  display: flex;
+  position: sticky;
+  top: 0;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  font-size: 2rem;
+  font-weight: 700;
+  border-bottom: 1px solid #1e1f23;
+  background-color: #272a31;
+  color: #fff;
+  z-index: 99;
+}
+.section-header h2 {
+  font-size: 2rem;
+}
+.section-header h2::before {
+  content: counter(section-counter) ". "; /* Chỉ mục cho section lớn */
+  font-weight: bold;
+}
+.lesson {
+  counter-increment: lesson-counter; /* Tăng từng bài học */
+}
+.lesson a {
+  display: block;
+  padding: 15px 20px;
+  background: #2a2b31;
+  color: #888;
+  text-decoration: none;
+  border-bottom: 1px solid #1e1f23;
+  position: relative;
+  counter-increment: sub-heading;
+}
+.lesson a::before {
+  content: counter(section-counter) "." counter(lesson-counter) "";
+  font-weight: normal;
+  margin-right: 10px;
+  color: #888;
+}
